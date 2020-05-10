@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>修改公司信息</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/main.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Hrmyself_index.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+
+<body>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Hrmyself/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;HR个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Hrlogin/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="contanier">
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-container" action="{:url('update')}" method="post">
+            <input type="hidden" name="id" value="{$Company->getData('id')}" />
+            <div class="form-group">
+            <label>公司名:</label>
+            <input class="form-control" type="text" name="companyName" value="{$Company->getData('companyName')}" />
+            </div>
+            <div class="form-group">
+            <label>员工数:</label>
+            <input class="form-control" type="text" name="employeeNumber" value="{$Company->getData('employeeNumber')}"/>
+            </div>
+            <div class="form-group">
+            <label>行业:</label>
+            <input class="form-control" type="text" name="profession" value="{$Company->getData('profession')}" />
+            </div>
+            <div class="form-group">
+            <label>城市:</label>
+            <input class="form-control" type="text" name="city" value="{$Company->getData('city')}" />
+            </div>
+            <div class="form-group">
+            <label>地址:</label>
+            <input class="form-control" type="text" name="address" value="{$Company->getData('address')}" />
+            </div>
+            <div class="form-group">
+            <label>简介:</label>
+            <textarea class="form-control" type="text" name="introduction" id="" cols="30" rows="10">{$Company->getData('introduction')}</textarea>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">保存</button>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

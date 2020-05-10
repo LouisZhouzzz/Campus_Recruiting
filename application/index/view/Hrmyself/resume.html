@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>招聘广告收到的简历</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Ad_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Hrmyself_myAccept.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+
+<body >
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Hrmyself/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;HR个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Hrlogin/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="name">求职者姓名</label>
+                            <input name="name" type="text" class="form-control"
+                                   placeholder="姓名..." value="{:input('get.name')}">
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <table class="table table-hover table-bordered">
+                <tr class="info">
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>邮箱</th>
+                    <th>学校</th>
+                    <th>行业</th>
+                    <th>生日</th>
+                    <th>手机号</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="resumes" id="_Resume" key="key"}
+                <tr>
+                    <td>{$key}</td>
+                    <td>{$_Resume->getData('name')}</td>
+                    <td>{$_Resume->sex}</td>
+                    <td>{$_Resume->getData('email')}</td>
+                    <td>{$_Resume->getData('school')}</td>
+                    <td>{$_Resume->getData('profession')}</td>
+                    <td>{$_Resume->getData('birthday')}</td>
+                    <td>{$_Resume->getData('phoneNumber')}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{:url('resumeDetail?id=' . $_Resume->getData('id'))}"><i class="glyphicon glyphicon-zoom-in"></i>&nbsp;查看详细简历</a>
+                    </td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

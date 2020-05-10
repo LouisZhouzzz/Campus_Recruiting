@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>修改简历</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Resume_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Resume_edit.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+<body >
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Studentmyself/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Login/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="contanier">
+<div class="row">
+    <form class="whole" action="{:url('update')}" method="post">
+        <div class="basic-info clearfix"  >
+            <input type="hidden" name="id" value="{$resume->getData('id')}" />
+            <div class="title">基本信息</div>
+            <div class="item item-1 clearfix">
+                <div class="col-xs-4">
+                    <span>姓名:</span>
+                    <input  type="text" name="name" value="{$resume->getData('name')}" />
+                </div>
+                <div class="col-xs-4">
+                    <span>性别:</span>
+                    <select  name="sex">
+                        <option value="0">男</option>
+                        <option value="1"
+                                {eq name="$resume->getData('sex')" value="1" }selected="selected"{/eq}>
+                        女</option>
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <span>生日:</span>
+                    <input  type="text" name="birthday" value="{$resume->getData('birthday')}" />
+                </div>
+                <!--注意各个input name千万别重复,否则第二个又提交到第一个变量,覆盖了-->
+            </div>
+            <div class="item item-2 clearfix">
+                <div class="col-xs-4">
+                    <span>城市:</span>
+                    <input  type="text" name="city" value="{$resume->getData('city')}" />
+                </div>
+                <div class="col-xs-4">
+                    <span>行业:</span>
+                    <input  type="text" name="profession" value="{$resume->getData('profession')}" />
+                </div>
+                <div class="col-xs-4">
+                    <span>学校:</span>
+                    <input  type="text" name="school" value="{$resume->getData('school')}" />
+                </div>
+            </div>
+            <div class="item item-3 clearfix">
+                <div class="col-xs-4">
+                    <span>手机号:</span>
+                    <input  type="text" name="phoneNumber" value="{$resume->getData('phoneNumber')}" />
+                </div>
+                <div class="col-xs-4">
+                    <span>邮箱:</span>
+                    <input  type="email" name="email" value="{$resume->getData('email')}" />
+                </div>
+                <div class="col-xs-4 ">
+                    <span>身份证号:</span>
+                    <input  type="text" name="cardNumber" value="{$resume->getData('cardNumber')}" />
+                </div>
+            </div>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+        <hr>
+        <div class="jobWish">
+            <div class="title">求职意向</div>
+            <!--注意textarea没有value属性-->
+            <textarea  type="text" name="jobWish" cols="30" rows="10" >
+                {$resume->getData('jobWish')}
+            </textarea>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+        <hr>
+        <div class="project">
+            <div class="title">项目经验</div>
+            <textarea  type="text" name="project"  cols="30" rows="10">
+                {$resume->getData('project')}
+            </textarea>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+        <hr>
+        <div class="education">
+            <div class="title">教育经历</div>
+            <textarea  type="text" name="education"  >
+                {$resume->getData('education')}
+            </textarea>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+        <hr>
+        <div class="specialty">
+            <div class="title">技能特长</div>
+            <textarea  type="text" name="specialty"  >
+                {$resume->getData('specialty')}
+            </textarea>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+        <hr>
+        <div class="certificate">
+            <div class="title">证书</div>
+            <textarea  type="text" name="certificate"  >
+                {$resume->getData('certificate')}
+            </textarea>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+        <hr>
+        <div class="extraInfo">
+            <div class="title">附加信息</div>
+            <textarea  type="text" name="extraInfo"  >
+                {$resume->getData('extraInfo')}
+            </textarea>
+            <div class="form-group submit">
+                <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </div>
+
+        <!-- <table class="table table-hover table-bordered">
+             <tr class="info">
+                 <th>姓名</th>
+                 <th>性别</th>
+                 <th>邮箱</th>
+                 <th>手机号</th>
+                 <th>身份证号</th>
+                 <th>学校</th>
+                 <th>行业</th>
+                 <th>生日</th>
+                 <th>城市</th>
+                 <th>教育经历</th>
+                 <th>求职意向</th>
+                 <th>项目经验</th>
+                 <th>技能特长</th>
+                 <th>附加信息</th>
+                 <th>更新时间</th>
+                 <th>操作</th>
+             </tr>
+             <tr>
+                 <td>{$resume->getData('name')}</td>
+                 <td>{$resume->getData('sex')}</td>
+                 <td>{$resume->getData('email')}</td>
+                 <td>{$resume->getData('phoneNumber')}</td>
+                 <td>{$resume->getData('cardNumber')}</td>
+                 <td>{$resume->getData('school')}</td>
+                 <td>{$resume->getData('profession')}</td>
+                 <td>{$resume->getData('birthday')}</td>
+                 <td>{$resume->getData('city')}</td>
+                 <td>{$resume->getData('education')}</td>
+                 <td>{$resume->getData('jobWish')}</td>
+                 <td>{$resume->getData('project')}</td>
+                 <td>{$resume->getData('specialty')}</td>
+                 <td>{$resume->getData('extraInfo')}</td>
+                 <td>{$resume->update_time}</td>
+                 <td>
+                     <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $resume->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
+                 </td>
+             </tr>
+         </table>-->
+    </form>
+
+        <!--<form  class="form-container" action="{:url('update')}" method="post">-->
+            <!--<div class="form-group">-->
+                <!--<label>姓名:</label>-->
+                <!--<input class="form-control" type="text" name="name"  />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<label>性别:</label>-->
+            <!--<select class="form-control"  name="sex">-->
+                <!--<option value="0">男</option>-->
+                <!--<option value="1">女</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>邮箱:</label>-->
+                <!--<input class="form-control" type="text" name="username" />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>学校:</label>-->
+                <!--<input class="form-control" type="email" name="email"  />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>行业:</label>-->
+                <!--<input class="form-control" type="text" name="school"  />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>手机号:</label>-->
+                <!--<input class="form-control" type="text" name="profession" />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>身份证号:</label>-->
+                <!--<input class="form-control" type="text" name="profession" />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>生日:</label>-->
+                <!--<input class="form-control" type="text" name="profession" />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>城市:</label>-->
+                <!--<input class="form-control" type="text" name="profession" />-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>教育经历:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>教育经历:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>教育经历:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>求职意向:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>项目经验:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>技能特长:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>项目经验:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>证书:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>附加信息:</label>-->
+                <!--<textarea class="form-control" type="text" name="profession" >-->
+                <!--</textarea>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<button class="btn btn-primary btn-block" type="submit">保存</button>-->
+            <!--</div>-->
+        <!--</form>-->
+</div>
+</div>
+</body>
+</html>

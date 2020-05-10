@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>简历管理</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Resume_index.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+<body >
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Studentmyself/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Login/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="resume">
+                <div class="resume-title resume-item">我的简历</div>
+                <a id="edit" class="btn btn-primary resume-item" href="{:url('Resume/edit')}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;修改</a>
+            </div>
+            <div class="card-item" >
+                <span >更新时间:</span>
+                <span>{$resume->update_time}</span>
+            </div>
+            <div class="card-item">
+                <span>公开:</span>
+                <span>对所有公开</span>
+            </div>
+        </div>
+        <div class="list-group side-bar">
+            <a class="list-group-item active" href="#">基本信息</a>
+            <a class="list-group-item" href="#">求职意向</a>
+            <a class="list-group-item" href="#">项目经验</a>
+            <a class="list-group-item" href="#">教育经历</a>
+            <a class="list-group-item" href="#">技能特长</a>
+            <a class="list-group-item" href="#">证书</a>
+            <a class="list-group-item" href="#">附加信息</a>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="basic-info clearfix">
+        <div class="title">基本信息</div>
+        <div class="item item-1 clearfix">
+            <div class="col-xs-4">
+                <span>姓名:</span>
+                <span>{$resume->getData('name')}</span>
+            </div>
+            <div class="col-xs-4">
+                <span>性别:</span>
+                <span>{$resume->sex}</span>
+            </div>
+            <div class="col-xs-4">
+                <span>生日:</span>
+                <span>{$resume->getData('birthday')}</span>
+            </div>
+        </div>
+            <div class="item item-2 clearfix">
+                <div class="col-xs-4">
+                    <span>城市:</span>
+                    <span>{$resume->getData('city')}</span>
+                </div>
+                <div class="col-xs-4">
+                    <span>行业:</span>
+                    <span>{$resume->getData('profession')}</span>
+                </div>
+                <div class="col-xs-4">
+                    <span>学校:</span>
+                    <span>{$resume->getData('school')}</span>
+                </div>
+            </div>
+            <div class="item item-3 clearfix">
+                <div class="col-xs-4">
+                    <span>手机号:</span>
+                    <span>{$resume->getData('phoneNumber')}</span>
+                </div>
+                <div class="col-xs-4">
+                    <span>邮箱:</span>
+                    <span>{$resume->getData('email')}</span>
+                </div>
+                <div class="col-xs-4">
+                    <span>身份证号:</span>
+                    <span>{$resume->getData('cardNumber')}</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="jobWish">
+            <div class="title">求职意向</div>
+            <div class="content">{$resume->getData('jobWish')}</div>
+        </div>
+        <hr>
+        <div class="project">
+            <div class="title">项目经验</div>
+            <div class="content">{$resume->getData('project')}</div>
+
+        </div>
+        <hr>
+        <div class="education">
+            <div class="title">教育经历</div>
+            <div class="content">{$resume->getData('education')}</div>
+        </div>
+        <hr>
+        <div class="specialty">
+            <div class="title">技能特长</div>
+            <div class="content">{$resume->getData('specialty')}</div>
+        </div>
+        <hr>
+        <div class="certificate">
+            <div class="title">证书</div>
+            <div class="content">{$resume->getData('certificate')}</div>
+        </div>
+        <hr>
+        <div class="extraInfo">
+            <div class="title">附加信息</div>
+            <div class="content">{$resume->getData('extraInfo')}</div>
+        </div>
+
+        <!-- <table class="table table-hover table-bordered">
+             <tr class="info">
+                 <th>姓名</th>
+                 <th>性别</th>
+                 <th>邮箱</th>
+                 <th>手机号</th>
+                 <th>身份证号</th>
+                 <th>学校</th>
+                 <th>行业</th>
+                 <th>生日</th>
+                 <th>城市</th>
+                 <th>教育经历</th>
+                 <th>求职意向</th>
+                 <th>项目经验</th>
+                 <th>技能特长</th>
+                 <th>附加信息</th>
+                 <th>更新时间</th>
+                 <th>操作</th>
+             </tr>
+             <tr>
+                 <td>{$resume->getData('name')}</td>
+                 <td>{$resume->getData('sex')}</td>
+                 <td>{$resume->getData('email')}</td>
+                 <td>{$resume->getData('phoneNumber')}</td>
+                 <td>{$resume->getData('cardNumber')}</td>
+                 <td>{$resume->getData('school')}</td>
+                 <td>{$resume->getData('profession')}</td>
+                 <td>{$resume->getData('birthday')}</td>
+                 <td>{$resume->getData('city')}</td>
+                 <td>{$resume->getData('education')}</td>
+                 <td>{$resume->getData('jobWish')}</td>
+                 <td>{$resume->getData('project')}</td>
+                 <td>{$resume->getData('specialty')}</td>
+                 <td>{$resume->getData('extraInfo')}</td>
+                 <td>{$resume->update_time}</td>
+                 <td>
+                     <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $resume->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
+                 </td>
+             </tr>
+         </table>-->
+    </div>
+</div>
+</div>
+</body>
+
+</html>

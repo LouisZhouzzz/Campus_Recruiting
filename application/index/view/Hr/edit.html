@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>修改HR信息</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/main.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Admin_index.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+
+<body >
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Admin/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;管理员个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Adminlogin/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="contanier">
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-container" action="{:url('update')}" method="post">
+            <input type="hidden" name="id" value="{$Hr->getData('id')}" />
+            <!--这个ID隐藏了,但很重要-->
+            <div class="form-group">
+            <label>姓名:</label>
+            <input class="form-control" type="text" name="name" value="{$Hr->getData('name')}" />
+            </div>
+            <div class="form-group">
+            <label>用户名:</label>
+            <input class="form-control" type="text" name="username" value="{$Hr->getData('username')}"/>
+            </div>
+            <div class="form-group">
+            <label>性别:</label>
+            <select class="form-control" name="sex">
+                <option value="0">男</option>
+                <option value="1"
+                        {eq name="$Hr->getData('sex')" value="1" }selected="selected"{/eq}>
+                女</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <label>邮箱:</label>
+            <input class="form-control" type="email" name="email" value="{$Hr->getData('email')}" />
+            </div>
+            <div class="form-group">
+            <label for="company">公司:</label>
+            <select class="form-control" name="company_id" id="company" >
+                {volist name="companys" id="_Company"}
+    <option value="{$_Company->id}" {eq name="_Company->getData('id')"
+    value="$Hr->getData('company_id')"} selected="selected" {/eq} >
+                {$_Company->companyName}
+    </option>
+                {/volist}
+            </select>
+            </div>
+            <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

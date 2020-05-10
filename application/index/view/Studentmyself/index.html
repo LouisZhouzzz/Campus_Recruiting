@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Studentmyself_index.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+<body >
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Studentmyself/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Login/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+<div class="row clearfix">
+    <div class="col-sm-2">
+        <div class="list-group side-bar">
+            <a class="list-group-item active" href="{:url('index')}"><i class="glyphicon glyphicon-user"></i>&nbsp;个人信息管理</a>
+            <a class="list-group-item " href="{:url('Studentmyself/password')}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;修改密码</a>
+            <a class="list-group-item" href="{:url('Home/index')}"><i class="glyphicon glyphicon-search"></i>&nbsp;搜索职位</a>
+            <a class="list-group-item" href="{:url('Resume/index')}"><i class="glyphicon glyphicon-th"></i>&nbsp;简历管理</a>
+            <a class="list-group-item" href="{:url('Studentmyself/myApply')}"><i class="glyphicon glyphicon-star"></i>&nbsp;我的申请</a>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <h2 class="title">我的个人信息</h2>
+        <table class="table table-hover table-bordered">
+            <tr class="info">
+                <th>姓名</th>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>邮箱</th>
+                <th>学校</th>
+                <th>行业</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>{$student->getData('name')}</td>
+                <td>{$student->getData('username')}</td>
+                <td>{eq name='student->getData("sex")' value='0'}男{else /}女{/eq}</td>
+                <td>{$student->getData('email')}</td>
+                <td>{$student->getData('school')}</td>
+                <td>{$student->getData('profession')}</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $student->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
+                    &nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>

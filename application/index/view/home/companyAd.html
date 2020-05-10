@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘首页</title>
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_adResult.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_companyAd.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+<body>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{:url('Adminlogin/index')}">管理员入口</a></li>
+            <li><a href="{:url('Hrlogin/index')}" class="hr">HR入口</a></li>
+            <div id="isLogin" style="display: none">{$isLogin}</div>
+            <!--从这个变量控制登录或者用户名谁显示,用jquery的show() hide()-->
+            <li class="active" id="username"><a  href="{:url('Studentmyself/index')}">{$student->name}</a></li>
+            <li class="active" id="login"> <a  href="{:url('Login/index')}">登录</a></li>
+            <li id="signup"><a href="{:url('Signup/index')}">注册</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="firstpart">
+            <div class="basic-info clearfix">
+                <div class="col-sm-6">
+                    <div class="company-name">{$company->companyName}</div>
+                    <div class="extra-info">
+                        <div class="profession">{$company->profession} |</div>
+                        <div class="employee-number">{$company->employeeNumber} |</div>
+                        <div class="address">{$company->address}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-info clearfix">
+                <div class="col-sm-8">
+                    <div class="introduction">{$company->introduction}</div>
+                </div>
+            </div>
+        </div>
+        <div class="secondpart ">
+            {volist name="hrs" id="_Hr" key="key"}
+            <!--神奇的事情 hr-ads不能作为类否则不显示-->
+           <div class="hr-ad">
+                <div class="result-title">{$_Hr->name}发布</div>
+                <div class="result-head clearfix">
+                    <div class="col-sm-3 job-title">职位名称</div>
+                    <div class="col-sm-3 job-title">公司</div>
+                    <div class="col-sm-2 job-title">城市</div>
+                    <div class="col-sm-2 job-title">薪资</div>
+                    <div class="col-sm-2 job-title">发布时间</div>
+                </div>
+                {volist name="_Hr->ads" id="_Ad" key="key"}
+               <!--可以这样嵌套 而且变量可以这样-->
+                <a  href="{:url('exactAd?id=' . $_Ad->getData('id'))}">
+                    <div class="result-item clearfix">
+                        <div class="col-sm-3 job-name">{$_Ad->getData('jobName')}</div>
+                        <div class="col-sm-3 job-detail">{$_Ad->Hr->Company->companyName}</div>
+                        <div class="col-sm-2 job-detail">{$_Ad->getData('city')}</div>
+                        <div class="col-sm-2 job-salary">{$_Ad->getData('salary')}</div>
+                        <div class="col-sm-2 job-detail">{$_Ad->create_time}</div>
+                    </div>
+                </a>
+                {/volist}
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+<div class="footer">
+    © 2019 LZ校园招聘 中国互联网举报中心京ICP证1401号京ICP备125439号-3京公网安备
+</div>
+<script src="/thinkphp5/public/static/js/jquery.js"></script>
+<!-- jquery一定要写写在自己js的上头 -->
+<script src="/thinkphp5/public/static/js/main.js"></script>
+</body>
+</html>

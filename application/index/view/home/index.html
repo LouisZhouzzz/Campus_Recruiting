@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘首页</title>
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+<body>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{:url('Adminlogin/index')}">管理员入口</a></li>
+            <li><a href="{:url('Hrlogin/index')}" class="hr">HR入口</a></li>
+            <div id="isLogin" style="display: none">{$isLogin}</div>
+            <!--从这个变量控制登录或者用户名谁显示,用jquery的show() hide()-->
+            <li class="active" id="username"><a  href="{:url('Studentmyself/index')}">{$student->name}</a></li>
+            <li class="active" id="login"> <a  href="{:url('Login/index')}">登录</a></li>
+            <li id="signup"><a href="{:url('Signup/index')}">注册</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="firstpart">
+            <div class="col-md-4">
+                <div class="title">搜索职位</div >
+                <form class="form" action="{:url('adResult')}" method="get">
+                    <div class="form-group search">
+                        <input name="jobName" type="text" class="form-control"
+                               placeholder="请输入职位名称..." value="{:input('get.jobName')}">
+                    </div>
+                    <!--form标签<>里什么都不填提交到当前action method默认get-->
+                    <div class="form-group search">
+                        <input name="city" type="text" class="form-control"
+                               placeholder="请输入城市..."  value="{:input('get.city')}">
+                    </div>
+                    <div class="form-group search">
+                        <input name="profession" type="text" class="form-control"
+                               placeholder="请输入行业..." value="{:input('get.profession')}">
+                    </div>
+                   <!-- <div class="form-group">
+                        <label for="city">城市</label>
+                        <select name="city" class="form-control" id="city">
+                            <option value="1">汕头</option>
+                            <option value="2">深圳</option>
+                            <option value="3">广州</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profession">行业</label>
+                        <select name="profession" class="form-control" id="profession">
+                            <option value="1">Web前端</option>
+                            <option value="2">java工程师</option>
+                            <option value="3">IOS工程师</option>
+                        </select>
+                    </div>-->
+                    <button type="submit" class="btn btn-primary btn-block">&nbsp;搜索</button>
+                </form>
+            </div>
+            <div class="col-md-8 ">
+                <div class="title">名企热招</div >
+                <div class="hot-ad">
+                    <a href="{:url('companyAd?id='.'2')}">
+                    <img src="/thinkphp5/public/static/img/tencent.jpg" alt="ad">
+                    </a>
+                    <a href="{:url('companyAd?id='.'6')}">
+                    <img src="/thinkphp5/public/static/img/baidu.jpg" alt="ad">
+                    </a>
+                    <a href="{:url('companyAd?id='.'5')}">
+                    <img src="/thinkphp5/public/static/img/alibaba.jpg" alt="ad">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="secondpart">
+        <div class="title">热门行业岗位</div>
+        <div class="clearfix">
+            <a id="computer" href="#" class="profession col-md-2">计算机类</a>
+            <a id="finance" href="#" class="profession col-md-2">金融类</a>
+            <a id="architecture" href="#" class="profession col-md-2">建筑类</a>
+            <a id="sale" href="#" class="profession col-md-2">销售类</a>
+            <a id="medicine" href="#" class="profession col-md-2">医药类</a>
+        </div>
+        <div id="computer-ad">
+        <div class="hot-ad clearfix">
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '3')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Web前端工程师</div>
+                    <div class="companyInfo">腾讯</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1-1.5万/月</div>
+                    <div class="city">深圳</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '18')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Python开发工程师</div>
+                    <div class="companyInfo">腾讯</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1.5-2万/月</div>
+                    <div class="city">深圳</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '20')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Java开发工程师</div>
+                    <div class="companyInfo">腾讯</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1.2-2万/月</div>
+                    <div class="city">深圳</div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <div class="hot-ad clearfix">
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '12')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Java开发工程师</div>
+                    <div class="companyInfo">百度</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">2.5-3万/月</div>
+                    <div class="city">北京</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '13')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">高级Java开发工程师</div>
+                    <div class="companyInfo">百度</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">3-4万/月</div>
+                    <div class="city">北京</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '14')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Java开发工程师</div>
+                    <div class="companyInfo">百度</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1-1.5万/月</div>
+                    <div class="city">北京</div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <div class="hot-ad clearfix">
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '15')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Python开发工程师</div>
+                    <div class="companyInfo">阿里巴巴</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1-1.5万/月</div>
+                    <div class="city">杭州</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '16')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">Python开发工程师</div>
+                    <div class="companyInfo">阿里巴巴</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1.4-2万/月</div>
+                    <div class="city">杭州</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 ad  clearfix">
+                <a href="{:url('exactAd?id=' . '17')}">
+                <div class="col-sm-7">
+                    <div class="jobInfo">资深Python工程师</div>
+                    <div class="companyInfo">阿里巴巴</div>
+                </div>
+                <div class="col-sm-5 ">
+                    <div class="salary">1.3-1.6万/月</div>
+                    <div class="city">杭州</div>
+                </div>
+                </a>
+            </div>
+        </div>
+        </div>
+        <div id="finance-ad">
+            <div class="hot-ad clearfix">
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '22')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">AI市场化推广岗</div>
+                            <div class="companyInfo">平安金服</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">0.8-1万/月</div>
+                            <div class="city">深圳</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '23')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">费用产品岗</div>
+                            <div class="companyInfo">平安金服</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">0.8-1万/月</div>
+                            <div class="city">深圳</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '24')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">运营分析岗</div>
+                            <div class="companyInfo">平安金服</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">1-2万/月</div>
+                            <div class="city">深圳</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="architecture-ad">
+            <div class="hot-ad clearfix">
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '25')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">市政施工员</div>
+                            <div class="companyInfo">二建集团</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">0.8-1.5万/月</div>
+                            <div class="city">福州</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '26')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">安装施工员</div>
+                            <div class="companyInfo">二建集团</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">1-2万/月</div>
+                            <div class="city">福州</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '27')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">土建造价员</div>
+                            <div class="companyInfo">二建集团</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">1.5-2万/月</div>
+                            <div class="city">福州</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="sale-ad">
+            <div class="hot-ad clearfix">
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '28')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">销售管理培训生</div>
+                            <div class="companyInfo">中粮肉食</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">0.8-1万/月</div>
+                            <div class="city">北京</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '29')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">销售管理培训生</div>
+                            <div class="companyInfo">中粮肉食</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">0.8-1万/月</div>
+                            <div class="city">上海</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '30')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">销售管理培训生</div>
+                            <div class="companyInfo">中粮肉食</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">0.8-1万/月</div>
+                            <div class="city">武汉</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="medicine-ad">
+            <div class="hot-ad clearfix">
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '32')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">药理研究员</div>
+                            <div class="companyInfo">贝达药业</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">6-8千/月</div>
+                            <div class="city">杭州</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '33')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">医学专员</div>
+                            <div class="companyInfo">贝达药业</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">6-8千/月</div>
+                            <div class="city">杭州</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 ad  clearfix">
+                    <a href="{:url('exactAd?id=' . '34')}">
+                        <div class="col-sm-7">
+                            <div class="jobInfo">PK医学专员</div>
+                            <div class="companyInfo">贝达药业</div>
+                        </div>
+                        <div class="col-sm-5 ">
+                            <div class="salary">6-8千/月</div>
+                            <div class="city">杭州</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    © 2019 LZ校园招聘 中国互联网举报中心京ICP证1401号京ICP备125439号-3京公网安备
+</div>
+<script src="/thinkphp5/public/static/js/jquery.js"></script>
+<!-- jquery一定要写写在自己js的上头 -->
+<script src="/thinkphp5/public/static/js/main.js"></script>
+</body>
+</html>

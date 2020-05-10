@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>我申请的职位</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Home_index.css">
+    <link rel="stylesheet" href="/thinkphp5/public/static/css/Ad_index.css">
+    <link rel="shortcut icon" href="/thinkphp5/public/static/img/favicon.ico" />
+</head>
+
+<body >
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{:url('Home/index')}" class="navbar-brand">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{:url('Home/index')}">LZ ⋅ 校园招聘</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a href="{:url('Studentmyself/index')}" class="btn btn-default myself"><i class="glyphicon glyphicon-user"></i>&nbsp;个人中心</a>
+            </li>
+            <li >
+                <a href="{:url('Login/logOut')}" class="btn btn-danger logout"><i class="glyphicon glyphicon-off"></i>&nbsp;注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="jobName">职位名称</label>
+                            <input name="jobName" type="text" class="form-control"
+                                   placeholder="职位名称..." value="{:input('get.jobName')}">
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <table class="table table-hover table-bordered">
+                <tr class="info">
+                    <th>序号</th>
+                    <th>职位名称</th>
+                    <th>公司</th>
+                    <th>招聘人数</th>
+                    <th>职位信息</th>
+                    <th>联系方式</th>
+                    <th>行业</th>
+                    <th>城市</th>
+                    <th>薪资</th>
+                    <th>HR姓名</th>
+                    <th>发布时间</th>
+                </tr>
+                {volist name="ads" id="_Ad" key="key"}
+                <tr>
+                    <td>{$key}</td>
+                    <td>{$_Ad->getData('jobName')}</td>
+                    <td>{$_Ad->Hr->Company->companyName}</td>
+                    <td>{$_Ad->getData('hireNumber')}</td>
+                    <td>{$_Ad->getData('jobInfo')}</td>
+                    <td>{$_Ad->getData('contactInfo')}</td>
+                    <td>{$_Ad->getData('profession')}</td>
+                    <td>{$_Ad->getData('city')}</td>
+                    <td>{$_Ad->getData('salary')}</td>
+                    <td>{$_Ad->Hr->name}</td>
+                    <td>{$_Ad->update_time}</td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
